@@ -1,0 +1,115 @@
+-------------------------------------------------------------------------------------------------------------
+/*
+Name: Yasmine Ben-Brahim
+SQL: From the 'Sam's Teach Yourself' series. Using SQL to query databases and answer business analytics questions
+*/
+-------------------------------------------------------------------------------------------------------------
+/*
+# Question 1: stysSQL database
+What is the total order quantity for all orders compared to the overall company total quantity
+and overall company average quantity?
+- List the order number, order total quantity, company total quantity, and average company quantity
+- Round all results to 2 decimal places. 
+*/
+/*
+SELECT
+ord.order_num, 
+round(sum(ordi.quantity),2) as ordTotal,
+
+(SELECT AS STRUCT
+round(sum(ordi.quantity),2) as totQty,
+round(sum(ordi.quantity)/count(ordi.order_num),2) as avgCompanyQuantity
+
+FROM `culeeds1.stysSQL.OrderItems` as ordi
+
+  ) as overall
+
+FROM
+`culeeds1.stysSQL.Orders` as ord
+  INNER JOIN `culeeds1.stysSQL.OrderItems` as ordi
+  ON ord.order_num = ordi.order_num
+GROUP BY
+  ord.order_num
+*/
+
+---------------------------------------------------------------------------------
+/*Question #2: SaleCo Database
+Who are all the customers with balances greater than $500?
+Specifications:
+- Show all the customer information for the customers with balances over $500
+- Don't use more tables than necessary to answer the question
+*/
+
+/*
+SELECT *
+FROM `saleco-256714.SaleCo.Customers` as cust
+WHERE cust.CUS_BALANCE > 500
+*/
+
+-------------------------------------------------------------------------------------------
+/*
+Question #3: SaleCo Database
+What is the total revenue for each customer as well as the total revenue for the company?
+
+Specifications: 
+
+- Show the customer's first and last names in the output
+- Alias the customer revenue as: CustRev
+- Alias the company revenue as: CompRev
+- Order your results by customer revenue from highest to lowest
+- Recall: revenue is given by multiplying LINE_UNITS by LINE_PRICE
+*/
+# Write your code starting on the next line
+/*
+SELECT
+  CUS_FNAME, CUS_LNAME,
+  round(SUM(LINE_UNITS*LINE_PRICE),2) As CustRev,
+
+     (SELECT round(SUM(LINE_UNITS*LINE_PRICE),2)
+      FROM `saleco-256714.SaleCo.Customers` AS Cust
+      INNER Join `saleco-256714.SaleCo.Invoice` AS Inv 
+      ON Cust.Cus_CODE=INV.CUS_CODE
+      INNER JOIN `saleco-256714.SaleCo.Line` AS LINE
+      ON INV.INV_NUMBER=LINE.INV_NUMBER) As CompRev
+
+FROM `saleco-256714.SaleCo.Customers` AS Cust
+  INNER Join `saleco-256714.SaleCo.Invoice` AS Inv
+  ON Cust.Cus_CODE=INV.CUS_CODE
+  INNER JOIN `saleco-256714.SaleCo.Line` AS LINE 
+  ON INV.INV_NUMBER=LINE.INV_NUMBER
+
+GROUP BY
+  CUS_FNAME, CUS_LNAME
+
+ORDER BY
+  CustRev DESC
+  */
+--------------------------------------------------------------------------------------------
+/*
+# Question #4 SaleCo Database
+  What is the total revenue for our customers with subtotals by invoice and overall revenue?
+
+- Refer to the sample output given below and write your query to replicate the data exactly as shown (column aliases, some ordering, etc)
+- Sort the results by customer last name then by revenue in descending order
+- Do not show duplicate values for revenue in the revenue column as the previous question did for company revenue
+- The exception to this would be if a customer only had one invoice number and their customer subtotal equaled their invoice line total
+- Recall: revenue can be calculated by multiplying LINE_UNITS and LINE_PRICE.  
+*/
+/*
+select
+cust.cus_lname, inv.INV_NUMBER, round(sum(line.line_units * line.line_price),2) as Revenue
+From
+`saleco-256714.SaleCo.Customers` as cust
+Left Join
+`saleco-256714.SaleCo.Invoice` as inv
+On
+cust.cus_code=inv.cus_code
+Left Join
+`saleco-256714.SaleCo.Line` as line
+On
+inv.inv_number=line.inv_number
+Group By
+cust.cus_lname, inv.INV_NUMBER
+Order By
+cust.cus_lname ASC, Revenue DESC
+*/
