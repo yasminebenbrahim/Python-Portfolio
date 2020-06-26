@@ -14,3 +14,5 @@ Collect and store live stock data using python,
 Create calculated columns after analyzing, filtering, and grouping data, and
 Data visualization
 
+# SQL- Part1
+Answering business questions using SQL. Data from 'Sam's Teach Yourself SQL in 10 Minutes'
