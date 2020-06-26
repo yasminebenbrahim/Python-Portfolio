@@ -3,14 +3,14 @@ Kaggle Competition. Task Details As of August 2019, this data set contains almos
 
 # Yasmine Ben-Brahim - Python Portfolio
 Skills covered in Part 1 consist of:
-Analyze data using python
-Filter and grouping data
-Create a function for quick metadata output
-Join DataFrames
+Analyze data using python,
+Filter and grouping data,
+Create a function for quick metadata output,
+Join DataFrames, and
 Create calculated columns
 
 Skills covered in Part 2 consist of:
-Collect and store live stock data using python
-Create calculated columns after analyzing, filtering, and grouping data
+Collect and store live stock data using python,
+Create calculated columns after analyzing, filtering, and grouping data, and
 Data visualization
 
