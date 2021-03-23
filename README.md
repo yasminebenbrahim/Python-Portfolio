@@ -1,10 +1,10 @@
-# Analytics for LXL
-Reading SQL queries from BigQuery into Python to perform quick analytics for executive bidding producer.
+# sklearn models
+KMeans, KNN, SVM, LogisticRegression basic models with sklearn datasets
 
 # NYCAirbnb
 Kaggle Competition. Task Details As of August 2019, this data set contains almost 50K Airbnb listings in NYC. The purpose of this task is to predict the price of NYC Airbnb rentals based on the data provided and any external dataset(s) with relevant information.
 
-# Yasmine Ben-Brahim - Python Portfolio
+# dataAnalyticsBasics
 Skills covered in Part 1 consist of:
 Analyze data using python,
 Filter and grouping data,
